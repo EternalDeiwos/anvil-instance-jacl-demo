@@ -1,6 +1,9 @@
 connect/keys
 connect/config
 connect/node_modules
+connect/logs
 nginx/certs
+nginx/logs
+redis/logs
 redis/data
 *.pem
