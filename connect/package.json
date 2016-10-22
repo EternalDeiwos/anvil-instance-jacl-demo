@@ -1,0 +1,16 @@
+{
+  "name": "test",
+  "version": "0.0.0",
+  "description": "Anvil Connect Deployment",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=4.2.3"
+  },
+  "dependencies": {
+    "anvil-connect": "^0.1.59"
+  }
+}

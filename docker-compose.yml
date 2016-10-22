@@ -1,0 +1,37 @@
+connect:
+  build: connect
+  #image: anvilresearch/connect:0.1.59
+  links:
+    - redis
+  volumes:
+    - ./connect/config:/opt/connect/config:ro
+    - ./connect/email:/opt/connect/email:ro
+    - ./connect/keys:/opt/connect/keys
+    - ./connect/logs:/opt/connect/logs
+    - ./connect/protocols:/opt/connect/protocols:ro
+    - ./connect/providers:/opt/connect/providers:ro
+    - ./connect/public:/opt/connect/public:ro
+    - ./connect/views:/opt/connect/views:ro
+  restart: always
+
+nginx:
+  build: nginx
+  #image: anvilresearch/nginx:0.1.59
+  links:
+    - connect
+  volumes:
+    - ./nginx/conf.d:/etc/nginx/conf.d:ro
+    - ./nginx/certs:/etc/nginx/certs:ro
+    - ./nginx/logs:/var/log/nginx
+  ports:
+    - "80:80"
+    - "443:443"
+  restart: always
+
+redis:
+  build: redis
+  #image: anvilresearch/redis:0.1.59
+  volumes:
+    - ./redis/data:/data
+    - ./redis/logs:/logs
+  restart: always
